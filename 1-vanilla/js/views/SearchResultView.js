@@ -1,5 +1,5 @@
 import { qs } from "../helpers.js";
-import View from "./View";
+import View from "./View.js";
 
 export default class SearchResultView extends View {
   constructor() {
@@ -20,14 +20,14 @@ class Template {
   getEmptyMessage() {
     return `
       <div class="empty-box">검색 결과가 없습니다.</div>
-    `
+    `;
   }
   getList(data = []) {
     return `
       <ul class="result">
         ${data.map(this._getItem).join("")}
       </ul>
-    `
+    `;
   }
   _getItem({imageUrl, name}) {
     return `
@@ -35,6 +35,6 @@ class Template {
         <img src="${imageUrl}" alt="${name}" />
         <p>${name}</p>
       </li>
-    `
+    `;
   }
 }
