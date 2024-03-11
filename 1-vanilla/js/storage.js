@@ -1,18 +1,22 @@
+// 결과물에서 사용할 데이터 모음
 import { createPastDate } from "./helpers.js";
 
 const storage = {
+  // 추천 검색어 
   keywordData: [
     { id: 1, keyword: "샐러드" },
     { id: 2, keyword: "커리" },
     { id: 3, keyword: "햄버거" },
   ],
 
+  // 검색 이력
   historyData: [
     { id: 1, keyword: "검색기록1", date: createPastDate(3) },
     { id: 2, keyword: "검색기록2", date: createPastDate(2) },
     { id: 3, keyword: "검색기록3", date: createPastDate(1) },
   ],
 
+  // 검색할 아이템
   productData: [
     {
       id: 1,
@@ -53,4 +57,5 @@ const storage = {
   ],
 };
 
+// 객체로 만들어서 외부DB에 저장되어 있겠죠?
 export default storage;
