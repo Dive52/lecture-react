@@ -14,11 +14,14 @@ export default class Controller {
   subscribeViewEvents() {
     this.searchFormView.on("@submit", (event) =>
       this.search(event.detail.value)
-    );
-    // TODO
+    ).on("@reset", () => this.resetSearch());
   }
 
   search(searchKeyword) {
     console.log(tag, "search", searchKeyword);
+  }
+
+  resetSearch(searchKeyword) {
+    console.log(tag, "resetSearch");
   }
 }
