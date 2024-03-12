@@ -1,4 +1,4 @@
-import { qs, qsAll } from "../helpers.js";
+import { on, qs, qsAll } from "../helpers.js";
 import View from "./View.js";
 
 const tag = "[TabView]";
@@ -19,8 +19,10 @@ export default class TabView extends View {
 
     super(qs("#tab-view"));
 
+    this.tabElement = qs("li", this.element);
+
     this.template = new Template();
-    // TODO
+    this.bindEvents();
   }
 
   show(selectedTab) {
@@ -30,6 +32,14 @@ export default class TabView extends View {
     });
 
     super.show();
+  }
+
+  bindEvents() {
+    on(this.tabElement, "click", () => this.changeTab());
+  }
+
+  changeTab() {
+    this.emit("@tab");
   }
 }
 
