@@ -27,7 +27,9 @@ export default class Controller {
 
   reset() {
     console.log(tag, "reset");
-    // TODO
+    this.store.searchKeyword = "";
+    this.store.searchResult = []; // 이거 빼먹었넹
+    this.render();
   }
 
   render() {
