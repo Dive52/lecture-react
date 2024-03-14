@@ -1,3 +1,4 @@
+import { createNextId } from "./helpers.js";
 import { TabType } from "./views/TabView.js";
 
 const tag = "[Store]";
@@ -20,7 +21,8 @@ export default class Store {
     this.searchResult = this.storage.productData.filter((product) =>
       product.name.includes(keyword)
     );
-    // TODO
+    // 키워드를 받아서 Store에 저장하는 함수를 호출
+    this.addHistory(keyword);
   }
 
   getKeywordList() {
@@ -41,5 +43,25 @@ export default class Store {
     );
   }
 
-  // TODO
+  // Storage에 저장하는 함수
+  addHistory(keyword) {
+    keyword = keyword.trim(); // 공백제거
+    if(!keyword) {
+      return;
+    }
+    
+    // 기존 검색 이력에 있는지 체크
+    // 있으면 삭제 후 최긴 시간으로 갱신 후 추가
+    // 없으면 바로 추가
+    
+    const hasHistory = this.storage.historyData.some(history => history.keyword === keyword);
+    if(hasHistory) {
+      this.removeHistory(keyword);
+    }
+    
+    const id = createNextId(this.storage.historyData);
+    const date = new Date();
+    this.storage.historyData.push({id, keyword, date});
+    this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
+  }
 }
