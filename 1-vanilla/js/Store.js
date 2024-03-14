@@ -22,7 +22,8 @@ export default class Store {
     );
   }
 
+  // 추천 검색어 목록을 스토리지에서 찾아서 반환해주는 메소드
   getKeywordList() {
-    // TODO
+    return this.storage.keywordData;
   }
 }
